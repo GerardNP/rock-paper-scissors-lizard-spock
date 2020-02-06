@@ -1,0 +1,143 @@
+// VARIABLES
+var options = ["rock", "paper", "scissors", "lizard", "spock"];
+var dir = "img/";
+var type_img = ".png"
+var J1 = prompt("Introduce un nombre para el J1: ");
+if ( J1 == "" ) {
+  J1 = "Player";
+}
+var J2 = "bot";
+var rounds = 0;
+var score_J1 = 0; var score_J2 = 0;
+
+// CONTROLLER EVENTS
+$(document).ready(controller_events);
+
+function controller_events() {
+  $(".options img").click(play);
+}
+
+// FUNCTIONS
+function play(event) {
+  var player_J1 = event.target.name;
+
+  var random = Math.floor( Math.random() * 5 );
+  var player_J2 = options[random];
+
+  //alert(player + " - " + random + " - " + bot);
+  show_option(player_J1, J1);
+  show_option(player_J2, J2);
+
+  var winner = get_winner(player_J1, player_J2);
+  switch ( winner ) {
+    case "J1":
+      var text = document.createTextNode("Has ganado, " + J1);
+      rounds++; score_J1++;break;
+    case "J2":
+      var text = document.createTextNode("Has ganado, " + J2);
+      rounds++; score_J2++;break;
+    default:
+      var text = document.createTextNode("Empate");
+      rounds++;break;
+  }
+  var h2 = document.createElement("h2");
+  h2.appendChild(text);
+  $(".result img")[0].before(h2);
+
+  show_scores();
+}
+
+function show_option(option, player) {
+  if ( $(".result").children().length > 1 ) {
+    $(".result").html("");
+  }
+  var img = document.createElement("img");
+  var dir_img = dir + option + type_img;
+  var alt_img = player + "-" + option;
+  img.setAttribute("src", dir_img);
+  img.setAttribute("alt", alt_img);
+  img.setAttribute("height", 150);
+  if ( player == J2 ) {
+    img.setAttribute("style", "-webkit-transform: scaleX(-1); transform: scaleX(-1);");
+  }
+  $(".result").append(img);
+}
+
+function get_winner(option_J1, option_J2) {
+  var winner;
+
+  if ( option_J1 == "rock" &&  option_J2 == "paper" ) { // rock
+    winner = "J2";
+  } else if ( option_J1 == "rock" &&  option_J2 == "scissors" ) {
+    winner = "J1";
+  } else if ( option_J1 == "rock" &&  option_J2 == "lizard" ) {
+    winner = "J1";
+  } else if ( option_J1 == "paper" &&  option_J2 == "spock" ) {
+    winner = "J2";
+  } else if ( option_J1 == "paper" &&  option_J2 == "rock" ) { // paper
+    winner = "J1";
+  } else if ( option_J1 == "paper" &&  option_J2 == "scissors" ) {
+    winner = "J2";
+  } else if ( option_J1 == "paper" &&  option_J2 == "lizard" ) {
+    winner = "J2";
+  } else if ( option_J1 == "paper" &&  option_J2 == "spock" ) {
+    winner = "J1";
+  } else if ( option_J1 == "scissors" &&  option_J2 == "rock" ) { // scissor
+    winner = "J2";
+  } else if ( option_J1 == "scissors" &&  option_J2 == "paper" ) {
+    winner = "J1";
+  } else if ( option_J1 == "scissors" &&  option_J2 == "lizard" ) {
+    winner = "J1";
+  } else if ( option_J1 == "scissors" &&  option_J2 == "spock" ) {
+    winner = "J2";
+  } else if ( option_J1 == "lizard" &&  option_J2 == "rock" ) { // lizard
+    winner = "J2";
+  } else if ( option_J1 == "lizard" &&  option_J2 == "paper" ) {
+    winner = "J1";
+  } else if ( option_J1 == "lizard" &&  option_J2 == "scissors" ) {
+    winner = "J2";
+  } else if ( option_J1 == "lizard" &&  option_J2 == "spock" ) {
+    winner = "J1";
+  } else if ( option_J1 == "spock" &&  option_J2 == "rock" ) { // spock
+    winner = "J1";
+  } else if ( option_J1 == "spock" &&  option_J2 == "paper" ) {
+    winner = "J2";
+  } else if ( option_J1 == "spock" &&  option_J2 == "scissors" ) {
+    winner = "J1";
+  } else if ( option_J1 == "spock" &&  option_J2 == "lizard" ) {
+    winner = "J2";
+  } else {
+    winner = "none";
+  }
+  return winner;
+}
+
+/*function get_winner(option_J1, option_J2) {
+  var winner;
+  if ( option_J1 == "rock" &&  option_J2 == "rock" ) { //rock
+    winner = "none";
+  } else if ( option_J1 == "rock" &&  option_J2 == "paper" ) {
+    winner = "J2";
+  } else if ( option_J1 == "rock" &&  option_J2 == "scissors" ) {
+    winner = "J1";
+  } else if ( option_J1 == "paper" &&  option_J2 == "rock" ) { //paper
+    winner = "J1";
+  } else if ( option_J1 == "paper" &&  option_J2 == "paper" ) {
+    winner = "none";
+  } else if ( option_J1 == "paper" &&  option_J2 == "scissors" ) {
+    winner = "J2";
+  } else if ( option_J1 == "scissors" &&  option_J2 == "rock" ) { //scissor
+    winner = "J2";
+  } else if ( option_J1 == "scissors" &&  option_J2 == "paper" ) {
+    winner = "J1";
+  } else if ( option_J1 == "scissors" &&  option_J2 == "scissors" ) {
+    winner = "none";
+  }
+  return winner;
+}*/
+
+function show_scores() {
+  $(".scores").html("");
+  var text = "Partidas: " + rounds + "\n Puntuación " + J1 +": " + score_J1 + "\n Puntuación J2: " + score_J2;
+  $(".scores").append(text);
+}
