@@ -72,7 +72,7 @@ function get_winner(option_J1, option_J2) {
     winner = "J1";
   } else if ( option_J1 == "rock" &&  option_J2 == "lizard" ) {
     winner = "J1";
-  } else if ( option_J1 == "paper" &&  option_J2 == "spock" ) {
+  } else if ( option_J1 == "rock" &&  option_J2 == "spock" ) {
     winner = "J2";
   } else if ( option_J1 == "paper" &&  option_J2 == "rock" ) { // paper
     winner = "J1";
@@ -111,30 +111,6 @@ function get_winner(option_J1, option_J2) {
   }
   return winner;
 }
-
-/*function get_winner(option_J1, option_J2) {
-  var winner;
-  if ( option_J1 == "rock" &&  option_J2 == "rock" ) { //rock
-    winner = "none";
-  } else if ( option_J1 == "rock" &&  option_J2 == "paper" ) {
-    winner = "J2";
-  } else if ( option_J1 == "rock" &&  option_J2 == "scissors" ) {
-    winner = "J1";
-  } else if ( option_J1 == "paper" &&  option_J2 == "rock" ) { //paper
-    winner = "J1";
-  } else if ( option_J1 == "paper" &&  option_J2 == "paper" ) {
-    winner = "none";
-  } else if ( option_J1 == "paper" &&  option_J2 == "scissors" ) {
-    winner = "J2";
-  } else if ( option_J1 == "scissors" &&  option_J2 == "rock" ) { //scissor
-    winner = "J2";
-  } else if ( option_J1 == "scissors" &&  option_J2 == "paper" ) {
-    winner = "J1";
-  } else if ( option_J1 == "scissors" &&  option_J2 == "scissors" ) {
-    winner = "none";
-  }
-  return winner;
-}*/
 
 function show_scores() {
   $(".scores").html("");
