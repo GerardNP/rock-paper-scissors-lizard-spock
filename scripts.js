@@ -87,7 +87,7 @@ function show_option(option, player) {
   var alt_img = player + "-" + option;
   img.setAttribute("src", dir_img);
   img.setAttribute("alt", alt_img);
-  img.setAttribute("height", 150);
+  img.setAttribute("height", 130);
   if ( player == J2 ) {
     img.setAttribute("style", "-webkit-transform: scaleX(-1); transform: scaleX(-1);");
   }
