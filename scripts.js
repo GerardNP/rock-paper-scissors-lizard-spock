@@ -7,6 +7,10 @@ var J2 = "bot";
 var rounds = 0;
 var score_J1 = 0; var score_J2 = 0;
 
+var start = new Audio("sounds/start.mp3"); // when the user start the game
+var click = new Audio("sounds/click.mp3"); // when the user click the option
+var win = new Audio("sounds/win.mp3");
+var loose = new Audio("sounds/loose.mp3");
 
 // CONTROLLER EVENTS
 $(document).ready(controller_events);
@@ -19,6 +23,7 @@ function controller_events() {
 
 // FUNCTIONS
 function show_content() {
+  start.play();
   $(".div_button_play , window.parent.document").css("display", "none");
   $(".content_game").css("display", "block");
 
@@ -39,6 +44,7 @@ function set_name_J1() {
 
 
 function play(event) {
+  click.play();
   var player_J1 = event.target.name;
 
   var random = Math.floor( Math.random() * 5 );
@@ -51,9 +57,11 @@ function play(event) {
   switch ( winner ) {
     case "J1":
       var text = document.createTextNode("Has ganado, " + J1);
+      win.play();
       rounds++; score_J1++;break;
     case "J2":
       var text = document.createTextNode("Has ganado, " + J2);
+      loose.play();
       rounds++; score_J2++;break;
     default:
       var text = document.createTextNode("Empate");
